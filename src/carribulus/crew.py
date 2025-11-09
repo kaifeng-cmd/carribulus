@@ -1,11 +1,27 @@
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import TavilySearchTool 
 from typing import List
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
+
+# OpenRouter platform models
+orouter = LLM(
+    model="openrouter/mistralai/mistral-small-3.2-24b-instruct:free",
+    base_url="https://openrouter.ai/api/v1",
+    api_key=os.getenv("OPENROUTER_API_KEY")
+)
+
+# Hugging Face platform models
+hf = LLM(
+    model="huggingface/Qwen/Qwen3-VL-8B-Instruct:novita"
+)
 
 @CrewBase
 class Carribulus():
@@ -36,14 +52,16 @@ class Carribulus():
         return Agent(
             config=self.agents_config['researcher'], # type: ignore[index]
             tools=[TavilySearchTool()], 
-            verbose=True
+            verbose=True,
+            llm=hf
         )
 
     @agent
     def reporting_analyst(self) -> Agent:
         return Agent(
             config=self.agents_config['reporting_analyst'], # type: ignore[index]
-            verbose=True
+            verbose=True,
+            llm=hf
         )
 
     # To learn more about structured task outputs,
