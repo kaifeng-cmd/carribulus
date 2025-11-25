@@ -13,7 +13,7 @@ load_dotenv()
 
 # OpenRouter platform models
 orouter = LLM(
-    model="openrouter/mistralai/mistral-small-3.2-24b-instruct:free",
+    model="openrouter/nvidia/nemotron-nano-9b-v2:free",
     base_url="https://openrouter.ai/api/v1",
     api_key=os.getenv("OPENROUTER_API_KEY")
 )
@@ -53,7 +53,7 @@ class Carribulus():
             config=self.agents_config['researcher'], # type: ignore[index]
             tools=[TavilySearchTool()], 
             verbose=True,
-            llm=hf
+            llm=orouter
         )
 
     @agent
@@ -71,6 +71,7 @@ class Carribulus():
     def research_task(self) -> Task:
         return Task(
             config=self.tasks_config['research_task'], # type: ignore[index]
+            human_input=True
         )
 
     @task
@@ -91,5 +92,6 @@ class Carribulus():
             tasks=self.tasks, # Automatically created by the @task decorator
             process=Process.sequential,
             verbose=True,
+            output_log_file=True,
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )

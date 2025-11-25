@@ -18,7 +18,7 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'Do Crewai agent framework have middleware and state like Langgraph v1.0? can it used for production stage?',
+        'topic': 'What changes for new version of Langchain which is v1.0? I saw it have middleware and agent improvements',
         'current_year': str(datetime.now().year)
     }
 
