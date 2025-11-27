@@ -8,24 +8,52 @@ from carribulus.crew import Carribulus
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
-# This main file is intended to be a way for you to run your
-# crew locally, so refrain from adding unnecessary logic into this file.
-# Replace with inputs you want to test with, it will automatically
-# interpolate any tasks and agents information
 
 def run():
     """
-    Run the crew.
+    Run the Travel Agent crew interactively.
     """
-    inputs = {
-        'topic': 'What changes for new version of Langchain which is v1.0? I saw it have middleware and agent improvements',
-        'current_year': str(datetime.now().year)
-    }
+    print("=" * 60)
+    print("🌏 Welcome to Carribulus Travel Agent!")
+    print("=" * 60)
+    print("\nI can help you with:")
+    print("  • Flight, train, bus bookings")
+    print("  • Hotel recommendations")
+    print("  • Local attractions & food")
+    print("  • Complete trip planning")
+    print("\nType 'exit' or 'quit' to leave.\n")
 
-    try:
-        Carribulus().crew().kickoff(inputs=inputs)
-    except Exception as e:
-        raise Exception(f"An error occurred while running the crew: {e}")
+    while True:
+        try:
+            user_query = input("You: ").strip()
+            
+            if not user_query:
+                continue
+            
+            if user_query.lower() in ['exit', 'quit', 'bye']:
+                print("\n✈️ Safe travels! See you next time!")
+                break
+
+            inputs = {
+                'user_query': user_query,
+                'current_date': datetime.now().strftime("%Y-%m-%d")
+            }
+
+            print("\n🔍 Processing your request...\n")
+            result = Carribulus().crew().kickoff(inputs=inputs)
+            
+            print("\n" + "=" * 60)
+            print("🎯 Response:")
+            print("=" * 60)
+            print(result)
+            print("=" * 60 + "\n")
+
+        except KeyboardInterrupt:
+            print("\n\n✈️ Safe travels! See you next time!")
+            break
+        except Exception as e:
+            print(f"\n❌ Error: {e}\n")
+            print("Please try again with a different question.\n")
 
 
 def train():
