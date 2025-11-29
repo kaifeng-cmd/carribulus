@@ -1,8 +1,9 @@
 handle_travel_request:
   description: >
     User's request: "{user_query}"
+    Current date: {current_date}
     
-    You are the Travel Manager. Analyze this request and coordinate your team.
+    You are the Travel Manager. Analyze this request and respond appropriately.
     
     ## Decision Guide:
     
@@ -20,17 +21,19 @@ handle_travel_request:
     → Use Transport Expert only.
     
     **Complete trip planning request** (e.g., "Plan 5-day Tokyo trip, RM5000 budget"):
-    → Use ALL experts in this order:
+    → Use BOTH experts:
       1. Local Guide: Research attractions, food, culture
-      2. Transport Expert: Find flights and hotels  
-      3. Itinerary Architect: Compile into beautiful itinerary
+      2. Transport Expert: Find flights and hotels
+    → Then YOU compile everything into the final itinerary.
     
     Always be helpful, friendly, and conversational.
     
   expected_output: >
     A helpful response in Markdown format.
     
-    For trip plans, include:
+    For simple questions: A friendly, concise answer.
+    
+    For trip plans, YOU must compile and include:
     - 🎯 Destination overview
     - ✈️ Flight options with prices
     - 🏨 Hotel recommendations with prices

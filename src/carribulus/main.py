@@ -1,6 +1,6 @@
-#!/usr/bin/env python
 import sys
 import warnings
+import time
 
 from datetime import datetime
 
@@ -9,12 +9,35 @@ from carribulus.crew import Carribulus
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
 
+def print_usage_metrics(crew_output):
+    """Print token usage and execution metrics"""
+    print("\n" + "=" * 100)
+    print("🪶  Usage Metrics:")
+    print("=" * 100)
+    
+    # Token usage from CrewOutput
+    # NOTE: token_usage is a UsageMetrics object, not a dict
+    if hasattr(crew_output, 'token_usage') and crew_output.token_usage:
+        usage = crew_output.token_usage
+        
+        # Access attributes directly (UsageMetrics is a Pydantic model)
+        total = getattr(usage, 'total_tokens', None)
+        prompt = getattr(usage, 'prompt_tokens', None)
+        completion = getattr(usage, 'completion_tokens', None)
+        
+        print(f"  🎇 Total Tokens: {total if total else 'N/A'}")
+        print(f"  🌿 Prompt Tokens: {prompt if prompt else 'N/A'}")
+        print(f"  📝 Completion Tokens: {completion if completion else 'N/A'}")
+        
+    else:
+        print("  ⚠️ Token usage not available")
+
 def run():
     """
     Run the Travel Agent crew interactively.
     """
     print("=" * 60)
-    print("🌏 Welcome to Carribulus Travel Agent!")
+    print("🌏 Welcome to Travel Assistant!")
     print("=" * 60)
     print("\nI can help you with:")
     print("  • Flight, train, bus bookings")
@@ -30,7 +53,7 @@ def run():
             if not user_query:
                 continue
             
-            if user_query.lower() in ['exit', 'quit', 'bye']:
+            if user_query.lower() in ['exit', 'quit']:
                 print("\n✈️ Safe travels! See you next time!")
                 break
 
@@ -40,13 +63,25 @@ def run():
             }
 
             print("\n🔍 Processing your request...\n")
-            result = Carribulus().crew().kickoff(inputs=inputs)
             
-            print("\n" + "=" * 60)
+            # Track execution time
+            start_time = time.time()
+            
+            crew_instance = Carribulus().crew()
+            result = crew_instance.kickoff(inputs=inputs)
+            
+            end_time = time.time()
+            execution_time = end_time - start_time
+            
+            print("\n" + "=" * 100)
             print("🎯 Response:")
-            print("=" * 60)
+            print("=" * 100 + "\n")
             print(result)
-            print("=" * 60 + "\n")
+            
+            # Print usage metrics
+            print_usage_metrics(result)
+            print(f"  ⏱️  Execution Time: {execution_time:.2f}s")
+            print("=" * 100 + "\n")
 
         except KeyboardInterrupt:
             print("\n\n✈️ Safe travels! See you next time!")
