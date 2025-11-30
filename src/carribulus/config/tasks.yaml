@@ -20,10 +20,17 @@ handle_travel_request:
     **Specific query about flights/buses/trains/hotels** (e.g., "Cheap flights to Bali"):
     → Use Transport Expert only.
     
+    **Events or safety concerns** (e.g., "What's happening in Bangkok", "Is it safe to visit Japan"):
+    → Use News Analyst only.
+    
+    **Image translation** (e.g., User provides an image URL with text to translate):
+    → Use Vision Translator only.
+    
     **Complete trip planning request** (e.g., "Plan 5-day Tokyo trip, RM5000 budget"):
-    → Use BOTH experts:
-      1. Local Guide: Research attractions, food, culture
-      2. Transport Expert: Find flights and hotels
+    → Use multiple experts as needed:
+      1. Transport Expert: Find flights and hotels
+      2. Local Guide: Research attractions, food, culture
+      3. News Analyst: Check events and safety
     → Then YOU compile everything into the final itinerary.
     
     Always be helpful, friendly, and conversational.
@@ -39,6 +46,8 @@ handle_travel_request:
     - 🏨 Hotel recommendations with prices
     - 📍 Must-visit attractions
     - 🍜 Food recommendations
+    - 🎉 Upcoming events (if any)
+    - ⚠️ Safety notes (weather, advisories)
     - 📅 Day-by-day itinerary
     - 💰 Budget breakdown
     - 💡 Practical tips

@@ -1,3 +1,7 @@
+"""
+Custom Tool Example
+- This is an example of how to create a custom tool for CrewAI.
+"""
 from crewai.tools import BaseTool
 from typing import Type
 from pydantic import BaseModel, Field
