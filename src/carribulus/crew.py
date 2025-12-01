@@ -6,12 +6,17 @@ from typing import List
 # Import LLMs from separate module
 from carribulus.llms import gm, hf, orouter
 
-# Import Tools
+# Import Tools organized by provider
 from carribulus.tools import (
-    serper_search,   # General search
-    serper_places,   # Places search (attractions, restaurants)
-    serper_news,     # News search (events, safety)
-    tavily_search,   # Deep search (comprehensive info)
+    # Serper.dev
+    serper_search,      # General search (buses, trains, Grab)
+    serper_places,      # Places search (attractions, restaurants)
+    serper_news,        # News search (events, safety)
+    # Tavily
+    tavily_search,      # Deep search (comprehensive info)
+    # SerpAPI
+    serpapi_flights,    # Google Flights
+    serpapi_hotels,     # Google Hotels
 )
 
 # Set custom storage location
@@ -43,8 +48,8 @@ class Carribulus():
                 
                 IMPORTANT DELEGATION RULES:
                 - Simple greetings (Hello, Hi) → respond directly, NO experts
-                - Vague requests → ask for details, NO experts yet
-                - Flights/Hotels/Transport → Transport Expert
+                - Vague requests → ask for details, NO experts yet, just respond until clarified
+                - Flights/Hotels/Transport → Transport & Accommodation Specialist
                 - Attractions/Food/Culture → Local Guide
                 - Events/Safety/Weather → News Analyst
                 - Image translation → Vision Translator (only when user provides image URL)
@@ -69,11 +74,15 @@ class Carribulus():
     # Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
     @agent
     def transport_expert(self) -> Agent:
-        """Handles flights, hotels, transportation"""
+        """Handles flights, hotels, and other transportation"""
         return Agent(
             config=self.agents_config['transport_expert'],
-            tools=[serper_search],
-            llm=orouter,
+            tools=[
+                serpapi_flights,    # Google Flights (precise pricing)
+                serpapi_hotels,     # Google Hotels (precise pricing)
+                serper_search,      # For buses, trains, Grab, ferries, etc.
+            ],
+            llm=gm,
             verbose=True
         )
 

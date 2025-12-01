@@ -19,7 +19,7 @@ import os
 # CrewAI Built-in Serper Tools
 # =============================================================================
 
-# General web search - for flights, hotels, transportation
+# General web search - for transportation (exclude flights)
 serper_search = SerperDevTool(
     n_results=10,
     country="my",  # Malaysia perspective
