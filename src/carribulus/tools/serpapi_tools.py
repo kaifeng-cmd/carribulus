@@ -186,10 +186,10 @@ class SerpAPIFlightsTool(BaseTool):
         # Determine trip type
         if return_date:
             params["return_date"] = return_date
-            params["type"] = "1"  # Round trip
+            params["type"] = 1  # Round trip
             trip_type = "Round-trip"
         else:
-            params["type"] = "2"  # One way
+            params["type"] = 2  # One way
             trip_type = "One-way"
         
         try:
@@ -440,7 +440,7 @@ class SerpAPIHotelsTool(BaseTool):
             
             rating = hotel.get("overall_rating", "N/A")
             reviews = hotel.get("reviews", 0)
-            rating_str = f"⭐{rating} ({reviews:,})" if rating != "N/A" else "N/A"
+            rating_str = f"⭐ {rating} ({reviews:,})" if rating != "N/A" else "N/A"
             
             # Price info
             rate = hotel.get("rate_per_night", {})

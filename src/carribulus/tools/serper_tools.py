@@ -4,7 +4,7 @@ https://serper.dev/
 https://docs.crewai.com/en/tools/search-research/serperdevtool
 
 Tools:
-- serper_search: General web search (for flights, hotels, general info)
+- serper_search: General web search (for transportation beside flights)
 - serper_places: Google Places search (for attractions, restaurants, locations)
 - SerperNewsTool: Custom news search with date range (for events, safety alerts)
 """

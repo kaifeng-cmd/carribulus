@@ -54,7 +54,7 @@ def run():
                 continue
             
             if user_query.lower() in ['exit', 'quit']:
-                print("\n✈️ Safe travels! See you next time!")
+                print("\n✈️  Safe travels! See you next time!")
                 break
 
             inputs = {

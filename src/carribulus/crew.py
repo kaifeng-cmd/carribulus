@@ -17,6 +17,10 @@ from carribulus.tools import (
     # SerpAPI
     serpapi_flights,    # Google Flights
     serpapi_hotels,     # Google Hotels
+    # Vision (To bypass CrewAI agent wrapper that have bugs with multimodal=True)
+    gemini_vision,      # Gemini
+    huggingface_vision, # HuggingFace
+    openrouter_vision,  # OpenRouter
 )
 
 # Set custom storage location
@@ -59,7 +63,7 @@ class Carribulus():
                   * Safety notes
                   * Practical tips
             """,
-            llm=gm,  # Should be a strong and clever model as supervisor
+            llm=orouter,  # Should be a strong and clever model as supervisor
             allow_delegation=True,
             verbose=True,
             max_retry_limit=3,
@@ -82,7 +86,7 @@ class Carribulus():
                 serpapi_hotels,     # Google Hotels (precise pricing)
                 serper_search,      # For buses, trains, Grab, ferries, etc.
             ],
-            llm=gm,
+            llm=orouter,
             verbose=True
         )
 
@@ -92,7 +96,7 @@ class Carribulus():
         return Agent(
             config=self.agents_config['local_guide'],
             tools=[serper_places, tavily_search],
-            llm=gm,
+            llm=orouter,
             verbose=True
         )
 
@@ -102,7 +106,7 @@ class Carribulus():
         return Agent(
             config=self.agents_config['news_analyst'],
             tools=[serper_news],
-            llm=gm,
+            llm=hf,
             verbose=True
         )
 
@@ -111,10 +115,11 @@ class Carribulus():
         """Handles image analysis and translation"""
         return Agent(
             config=self.agents_config['vision_translator'],
-            tools=[],  # No tools needed - uses vision capability directly
-            llm=hf,    
-            multimodal=True,  # Enable image understanding
+            tools=[huggingface_vision],
+            llm=hf,
             verbose=True
+            # Note: multimodal=True have bug for Vision Language Model (VLM)
+            # so we bypass CrewAI wrapper by using vision tool directly (call VLM API in tool)
         )
 
     # Task (defined in tasks.yaml)

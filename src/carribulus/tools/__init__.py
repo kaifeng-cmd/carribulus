@@ -5,6 +5,7 @@ Organized by provider:
 - serper_tools: Serper.dev (search, places, news)
 - tavily_tools: Tavily (deep search)
 - serpapi_tools: SerpAPI (Google Flights, Hotels)
+- vision_tools: Image analysis (Gemini, HuggingFace, OpenRouter)
 """
 
 # Serper.dev tools
@@ -26,6 +27,13 @@ from carribulus.tools.serpapi_tools import (
     serpapi_hotels,     # Google Hotels (precise pricing)
 )
 
+# Vision tools
+from carribulus.tools.vision_tools import (
+    gemini_vision,      # Gemini Flash series - recommend, high quota
+    huggingface_vision, # HuggingFace Qwen-VL
+    openrouter_vision,  # OpenRouter NVIDIA/nemotron VL
+)
+
 __all__ = [
     # Serper
     "serper_search",
@@ -37,4 +45,8 @@ __all__ = [
     # SerpAPI
     "serpapi_flights",
     "serpapi_hotels",
+    # Vision
+    "gemini_vision",
+    "huggingface_vision",
+    "openrouter_vision",
 ]
