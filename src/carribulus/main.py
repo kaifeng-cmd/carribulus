@@ -1,12 +1,35 @@
+import os
 import sys
 import warnings
 import time
 
 from datetime import datetime
-
+from dotenv import load_dotenv
 from carribulus.crew import Carribulus
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
+
+load_dotenv()
+
+# MLflow Tracing
+# =============================================================================
+# I've set ENABLE_TRACING=true in the .env, so auto tracing is enabled by default.
+# U can set ENABLE_TRACING=false if don't want to use MLflow tracing.
+#
+# Command to open monitoring interface (copy & run in terminal):
+#   mlflow ui --backend-store-uri sqlite:///mlflow.db --workers 1
+#   Then open this: http://127.0.0.1:5000
+
+if os.getenv("ENABLE_TRACING", "true").lower() == "true":
+    import mlflow
+    
+    mlflow.set_tracking_uri("sqlite:///mlflow.db")
+    
+    mlflow.crewai.autolog()
+    mlflow.set_experiment("Carribulus-TravelAgent")
+    print("📊 MLflow Tracing: ENABLED [sqlite:///mlflow.db]")
+else:
+    print("📊 MLflow Tracing: DISABLED")
 
 
 def print_usage_metrics(crew_output):

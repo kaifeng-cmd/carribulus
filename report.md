@@ -1,83 +1,38 @@
-您好！作为您的旅行经理，我已经请视觉翻译专家帮您分析了这份菜单图片。下面是用**简体中文**详细解释的菜单内容，非常适合旅行时参考点餐。菜单来自英语学习网站，没有价格，但菜品很经典。
+好的，这是图片中菜单信息的中文翻译：
 
----
+**菜单**
 
-### **菜单整体结构**
+**开胃菜 (Appetizers)**
+*   春卷 (Spring Rolls)
+*   法式洋葱汤 (French Onion Soup)
+*   番茄布鲁斯凯塔 (Tomato Bruschetta)
+*   凯撒沙拉 (Caesar Salad)
 
-这份菜单被一条垂直橙色细线分为左右两部分：
+**配菜 (Side Dishes)**
+*   混合绿色沙拉 (Mixed Green Salad)
+*   花园蔬菜 (Garden Vegetables)
+*   炸薯条 (French Fries)
+*   蒜香面包 (Garlic Bread)
 
-- **左侧**：开胃菜（STARTERS）和配菜（SIDE DISHES），适合搭配主菜食用。
-- **右侧**：主菜（MAIN COURSE）和甜点（DESSERT），是菜单的核心部分，提供多样选择。
+**主菜 (Main Courses)**
+*   香草酱烤三文鱼 (Roast Salmon with Herb Sauce)
+*   配蔬菜烤牛肉 (Roast Beef with Vegetables)
+*   鸡肉蘑菇派 (Chicken and Mushroom Pie)
+*   马拉喀什素食咖喱 (Marrakesh Vegetable Curry)
+*   茄子千层面 (Aubergine Lasagne)
 
-所有分类标题均用醒目的橙色字体标出，便于快速定位；菜品名称使用黑色字体，简洁明了。
+**甜点 (Desserts)**
+*   奶油苹果派 (Creamy Apple Pie)
+*   柠檬蛋白酥皮派 (Lemon Meringue Pie)
+*   香草冰淇淋 (Vanilla Ice Cream)
+*   焦糖薄饼 (Caramel Crepes)
+*   水果沙拉 (Fruit Salad)
 
----
-
-### **详细菜品翻译与说明**
-
-#### **开胃菜 (STARTERS)**
-1.  **Spring Rolls** → 春卷  
-    *经典中式或西式炸制小吃，外酥内软，常配甜辣酱。*
-
-2.  **French Onion Soup** → 法式洋葱汤  
-    *以慢炖洋葱、牛肉高汤和法棍面包片制成，风味浓郁。*
-
-3.  **Tomato Bruschetta** → 番茄布拉西凯塔  
-    *意式烤面包片，上面铺满新鲜番茄丁、罗勒叶和橄榄油，口感清爽。*
-
-4.  **Caesar Salad** → 凯撒沙拉  
-    *生菜、鸡胸肉、帕玛森芝士和特制凯撒酱的经典组合，咸香开胃。*
-
-#### **配菜 (SIDE DISHES)**
-1.  **Mixed Green Salad** → 混合蔬菜沙拉  
-    *多种生菜和蔬菜混合，通常淋上油醋汁，健康轻盈。*
-
-2.  **Garden Vegetables** → 菜园蔬菜  
-    *时令新鲜蔬菜，如西兰花、胡萝卜、青豆等，营养丰富。*
-
-3.  **French Fries** → 法式炸薯条  
-    *金黄酥脆的土豆条，可搭配番茄酱或蛋黄酱食用。*
-
-4.  **Garlic Bread** → 大蒜面包  
-    *法棍面包切片涂上大蒜黄油烘烤而成，香气扑鼻，佐餐佳品。*
-
-#### **主菜 (MAIN COURSE)**
-1.  **Grilled Salmon with Dill Sauce** → 香草酱烤三文鱼  
-    *新鲜三文鱼煎烤至嫩滑，搭配清新莳萝酱，富含Omega-3。*
-
-2.  **Roast Beef with Vegetables** → 烤牛肉配蔬菜  
-    *优质牛里脊或牛腩烤制，搭配烤蔬菜，肉质鲜嫩多汁。*
-
-3.  **Chicken and Mushroom Pie** → 鸡肉蘑菇派  
-    *酥皮派皮包裹鸡肉和蘑菇馅料，奶香浓郁，适合喜欢烘焙风味者。*
-
-4.  **Marrakesh Vegetarian Curry** → 马拉喀什素食咖喱  
-    *印度风味咖喱，用椰奶、香料和蔬菜烹制，温和香浓，素食友好。*
-
-5.  **Eggplant Lasagne** → 茄子千层面  
-    *层层叠叠的茄子片夹入番茄酱和奶酪，烘烤后口感丰富，类似意大利面食。*
-
-#### **甜点 (DESSERT)**
-1.  **Apple Pie with Cream** → 奶油苹果派  
-    *酥皮苹果派配香草奶油，酸甜平衡，是经典西式甜点。*
-
-2.  **Lemon Meringue Pie** → 柠檬蛋白派  
-    *清新的柠檬馅搭配蓬松蛋白霜，酸甜爽口，适合喜欢清爽口味者。*
-
-3.  **Vanilla Ice Cream** → 香草冰淇淋  
-    *纯正香草味冰淇淋，可选原味或加糖浆、水果等配料。*
-
-4.  **Crêpe Suzette** → 苏泽特可丽饼  
-    *薄煎饼淋上橙汁和黄油焦糖酱，火候掌握得当则香气四溢。*
-
-5.  **Fruit Salad** → 水果沙拉  
-    *混合新鲜水果如草莓、蓝莓、香蕉等，清凉解腻，健康之选。*
-
----
-
-### **实用提示**
-- 菜单右下角标注了网址：**EnglishClub.com**，表明这是教学用途，可能用于英语学习者练习点餐对话。
-- 菜单未标注价格，实际用餐时需向服务员询问具体费用。
-- 所有菜品均为国际通用西式料理，即使不懂英文也能通过名称大致猜出内容，非常适合旅行者参考点餐。
-
-如果您在旅行中遇到类似菜单，或者需要更多旅行建议（如当地餐厅推荐），随时告诉我哦！😊
+**饮料 (Drinks)**
+*   咖啡 (Coffee)
+*   茶 (Tea)
+*   果汁 (Juice)
+*   水 (Water)
+*   可乐 (Coke)
+*   红酒 (Red Wine)
+*   啤酒 (Beer)

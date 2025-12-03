@@ -63,7 +63,7 @@ class Carribulus():
                   * Safety notes
                   * Practical tips
             """,
-            llm=orouter,  # Should be a strong and clever model as supervisor
+            llm=gm,  # Should be a strong and clever model as supervisor
             allow_delegation=True,
             verbose=True,
             max_retry_limit=3,
@@ -86,7 +86,7 @@ class Carribulus():
                 serpapi_hotels,     # Google Hotels (precise pricing)
                 serper_search,      # For buses, trains, Grab, ferries, etc.
             ],
-            llm=orouter,
+            llm=gm,
             verbose=True
         )
 
@@ -96,7 +96,7 @@ class Carribulus():
         return Agent(
             config=self.agents_config['local_guide'],
             tools=[serper_places, tavily_search],
-            llm=orouter,
+            llm=gm,
             verbose=True
         )
 
@@ -106,7 +106,7 @@ class Carribulus():
         return Agent(
             config=self.agents_config['news_analyst'],
             tools=[serper_news],
-            llm=hf,
+            llm=gm,
             verbose=True
         )
 
