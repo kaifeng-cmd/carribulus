@@ -1,6 +1,9 @@
 handle_travel_request:
   description: >
-    User's request: "{user_query}"
+    Context from previous conversation:
+    "{chat_history}"
+
+    User's current request: "{topic}"
     Current date: {current_date}
     
     You are the Travel Manager. Analyze this request and respond appropriately.

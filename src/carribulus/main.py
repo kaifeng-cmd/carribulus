@@ -81,7 +81,8 @@ def run():
                 break
 
             inputs = {
-                'user_query': user_query,
+                'topic': user_query,
+                'chat_history': 'No previous history (CLI Mode).',
                 'current_date': datetime.now().strftime("%Y-%m-%d")
             }
 

@@ -1,7 +1,6 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from typing import List
-# import os
 
 # Import LLMs from separate module
 from carribulus.llms import gm, hf, orouter
@@ -23,8 +22,6 @@ from carribulus.tools import (
     openrouter_vision,  # OpenRouter
 )
 
-# Set custom storage location
-# os.environ["CREWAI_STORAGE_DIR"] = "./storage"
 
 @CrewBase
 class Carribulus():
@@ -49,6 +46,7 @@ class Carribulus():
                 2. If the request is vague, ask clarifying questions FIRST
                 3. Delegate specific research to the right experts
                 4. COMPILE and ORGANIZE all information into a final travel plan
+                5. Assume user is 1 ppl unless specified
                 
                 IMPORTANT DELEGATION RULES:
                 - Simple greetings (Hello, Hi) → respond directly, NO experts
@@ -150,5 +148,5 @@ class Carribulus():
             process=Process.hierarchical,
             manager_agent=self.travel_manager(),
             verbose=True,
-            output_log_file=False
+            output_log_file=False, # Enable if you want to save logs to a file
         )
