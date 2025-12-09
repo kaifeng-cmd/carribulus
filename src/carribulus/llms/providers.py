@@ -12,7 +12,7 @@ load_dotenv()
 # u can refer to: https://openrouter.ai/models
 # ====================================================================================
 orouter = LLM(
-    model="openrouter/qwen/qwen3-235b-a22b:free",
+    model="openrouter/mistralai/mistral-small-3.1-24b-instruct:free",
     base_url="https://openrouter.ai/api/v1",
     api_key=os.getenv("OPENROUTER_API_KEY")
 )
@@ -20,7 +20,7 @@ orouter = LLM(
 # Hugging Face platform models (Open Source)
 # u can refer to: https://huggingface.co/models
 # ====================================================================================
-hf = LLM(
+gm = LLM(
     model="huggingface/Qwen/Qwen3-VL-8B-Instruct:novita"
 )
 
@@ -28,7 +28,7 @@ hf = LLM(
 # u can refer to: https://ai.google.dev/
 # I used the most for this, becuz it is powerful, fast, free and have high limit quota.
 # =====================================================================================
-gm = LLM(
+hf = LLM(
     model="gemini/gemini-2.5-flash",
     temperature=0.7
 )

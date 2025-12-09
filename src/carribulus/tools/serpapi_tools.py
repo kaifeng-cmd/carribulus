@@ -85,7 +85,11 @@ class HotelSearchInput(BaseModel):
         default=0,
         ge=0,
         le=10,
-        description="Number of children (0-10)"
+        description="Number of children (0-10). If > 0, you MUST provide children_ages."
+    )
+    children_ages: Optional[str] = Field(
+        default=None,
+        description="Ages of children separated by comma (e.g., '5' or '5,8,10'). Required if children > 0. Valid age range: 1-17 (use 1 for infants)."
     )
     min_price: Optional[int] = Field(
         default=None,
@@ -350,6 +354,7 @@ class SerpAPIHotelsTool(BaseTool):
         check_out_date: str,
         adults: int = 1,
         children: int = 0,
+        children_ages: Optional[str] = None,
         min_price: Optional[int] = None,
         max_price: Optional[int] = None,
         hotel_class: Optional[str] = None,
@@ -374,6 +379,28 @@ class SerpAPIHotelsTool(BaseTool):
             "children": children,
             "sort_by": str(sort_by),
         }
+
+        # Handle children ages
+        if children > 0:
+            if not children_ages:
+                # Fallback: if ages not provided, assume age 10 for all children
+                params["children_ages"] = ",".join(["10"] * children)
+            else:
+                # Validate and sanitize ages (1-17)
+                try:
+                    ages = [int(x.strip()) for x in children_ages.split(",")]
+                    # Clamp ages between 1 and 17
+                    sanitized_ages = [str(max(1, min(17, age))) for age in ages]
+                    
+                    # Ensure count matches
+                    if len(sanitized_ages) != children:
+                        # If mismatch, just use default to avoid API error
+                        params["children_ages"] = ",".join(["10"] * children)
+                    else:
+                        params["children_ages"] = ",".join(sanitized_ages)
+                except ValueError:
+                    # If format is wrong, fallback to default
+                    params["children_ages"] = ",".join(["10"] * children)
         
         # Optional filters
         if min_price is not None:
