@@ -20,7 +20,7 @@ orouter = LLM(
 # Hugging Face platform models (Open Source)
 # u can refer to: https://huggingface.co/models
 # ====================================================================================
-gm = LLM(
+hf = LLM(
     model="huggingface/Qwen/Qwen3-VL-8B-Instruct:novita"
 )
 
@@ -28,7 +28,7 @@ gm = LLM(
 # u can refer to: https://ai.google.dev/
 # I used the most for this, becuz it is powerful, fast, free and have high limit quota.
 # =====================================================================================
-hf = LLM(
+gm = LLM(
     model="gemini/gemini-2.5-flash",
     temperature=0.7
 )

@@ -65,9 +65,12 @@ async def chat_endpoint(request: ChatRequest):
 
     # 6. Update Rolling Summary if needed
     if len(session.recent_messages) > MAX_RECENT_MESSAGES:
-        # Take the oldest half of messages to summarize
-        messages_to_summarize = session.recent_messages[:MAX_RECENT_MESSAGES//2]
-        messages_to_keep = session.recent_messages[MAX_RECENT_MESSAGES//2:]
+        # Keep only the last 2 messages (User + AI pair) to maintain immediate context
+        # Summarize everything else to save tokens while keep context working
+        KEEP_COUNT = 2
+        
+        messages_to_summarize = session.recent_messages[:-KEEP_COUNT]
+        messages_to_keep = session.recent_messages[-KEEP_COUNT:]
         
         new_summary = generate_rolling_summary(session.summary, messages_to_summarize)
         
