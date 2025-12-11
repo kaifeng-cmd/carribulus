@@ -1,0 +1,49 @@
+version: '3.9'
+
+services:
+  # FastAPI Backend Service
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: carribulus-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGO_USERNAME=${MONGO_USERNAME}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - MONGO_CLUSTER=${MONGO_CLUSTER}
+      - MONGO_APP_NAME=${MONGO_APP_NAME:-KaiFeng}
+      - DB_NAME=${DB_NAME:-carribulus_db}
+      - SUMMARY_MODEL=${SUMMARY_MODEL:-gemini/gemini-flash-latest}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - HF_TOKEN=${HF_TOKEN}
+      - SERPER_API_KEY=${SERPER_API_KEY}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+      - SERPAPI_API_KEY=${SERPAPI_API_KEY}
+    restart: unless-stopped
+    networks:
+      - carribulus-network
+    depends_on:
+      - frontend
+
+  # Gradio Frontend Service
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.ui
+    container_name: carribulus-frontend
+    ports:
+      - "7860:7860"
+    environment:
+      - API_URL=http://backend:8000
+    restart: unless-stopped
+    networks:
+      - carribulus-network
+    depends_on:
+      - backend
+
+networks:
+  carribulus-network:
+    driver: bridge
