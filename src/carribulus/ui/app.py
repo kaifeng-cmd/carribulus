@@ -172,6 +172,6 @@ with gr.Blocks(title="Travel Agent", theme=gr.themes.Soft(), css=custom_css) as 
 if __name__ == "__main__":
     demo.queue()
     demo.launch(
-        server_name="localhost", 
+        server_name="0.0.0.0", 
         server_port=7860
     )
