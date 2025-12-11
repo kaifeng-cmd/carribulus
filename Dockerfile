@@ -15,7 +15,9 @@ COPY pyproject.toml .
 RUN pip install --no-cache-dir -e .
 
 # Copy application code
-COPY src/ /app/src/
+COPY . .
+
+ENV PYTHONPATH=/app/src
 
 # Expose FastAPI port
 EXPOSE 8000
