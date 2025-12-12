@@ -17,7 +17,7 @@ async def chat_function(message, history, session_id):
     yield "", history
 
     try:
-        async with httpx.AsyncClient(timeout=120.0) as client:
+        async with httpx.AsyncClient(timeout=150.0) as client:
             payload = {"message": message, "session_id": session_id}
             response = await client.post(f"{API_URL}/chat", json=payload)
             response.raise_for_status()
@@ -34,127 +34,212 @@ async def chat_function(message, history, session_id):
     yield "", history
 
 custom_css = '''
-/* 森系风格 (Nature/Forest Theme) */
-/* 主容器 - 森林绿渐变背景 */
+/* ════ 桌面端（默认）════ */
 .gradio-container {
-    background: linear-gradient(135deg, #f2f9fc 0%, #E7F2EF 50%, #ffd3b6 100%) !important;
+    background: linear-gradient(135deg, #f2f9fc 0%, #FEEAC9 50%, #ffd3b6 100%) !important;
     min-height: 100vh !important;
-    padding: 80px !important;
+    padding: 100px !important;
 }
 
-/* 内容区 - 奶白色卡片 */
-.main {
-    max-width: 1400px !important;
-    margin: 0 auto !important;
-    background: rgba(255, 253, 248, 0.95) !important;
-    border-radius: 30px !important;
-    padding: 45px !important;
-    box-shadow: 0 15px 50px rgba(76, 112, 64, 0.15) !important;
-    border: 2px solid rgba(168, 230, 207, 0.3) !important;
-}
-
-/* 聊天框 - 柔和的森林色 */
 #chatbot {
     border-radius: 20px !important;
-    border: 2px solid #edf6fa !important;
-    box-shadow: 0 6px 25px rgba(76, 112, 64, 0.1) !important;
-    background: linear-gradient(135deg, #f1f8f4 0%, #fafdf8 100%) !important;
+    border: 2px solid #FCF6D9 !important;
+    box-shadow: 0 6px 25px rgba(76, 112, 64, 0.15) !important;
+    background: linear-gradient(135deg, #f1f8f4 0%, #FCF6D9 100%) !important;
 }
 
-/* 标题 - 森林绿渐变 */
 #title-text {
     text-align: center;
-    background: linear-gradient(135deg, #6D94C5 0%, #66bb6a 50%, #81c784 100%);
+    background: linear-gradient(135deg, #FFCDC9 0%, #FD7979 50%, #e03434 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-size: 2.8em !important;
     margin-bottom: 8px !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     letter-spacing: -0.5px !important;
 }
 
-/* 副标题 */
 #subtitle-text {
     text-align: center;
     color: #5d4037 !important;
     font-size: 1.15em !important;
-    font-weight: 400 !important;
-    opacity: 0.85;
+    font-weight: 500 !important;
+    opacity: 0.9;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.5 !important;
 }
 
-/* 输入框样式 */
-.textbox textarea {
+textarea {
     border-radius: 15px !important;
-    border: 2px solid #c8e6c9 !important;
-    background: #fafdf8 !important;
+    border: 2px solid #ffffff !important;
+    background: #ffffff !important;
     font-size: 16px !important;
     padding: 12px !important;
 }
 
-.textbox textarea:focus {
-    border-color: #81c784 !important;
+textarea:focus {
+    border-color: #947b7b !important;
     box-shadow: 0 0 0 3px rgba(129, 199, 132, 0.15) !important;
     outline: none !important;
 }
 
-/* 发送按钮 - 森林绿 */
 #send-btn {
-    background: linear-gradient(135deg, #66bb6a 0%, #4caf50 100%) !important;
+    background: linear-gradient(135deg, #6e5656 0%, #5e4142 100%) !important;
     border: none !important;
-    border-radius: 15px !important;
+    border-radius: 10px !important;
     color: white !important;
     font-weight: 600 !important;
     min-height: 48px !important;
-    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
     transition: all 0.3s ease !important;
 }
 
 #send-btn:hover {
-    background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%) !important;
+    background: linear-gradient(135deg, #5e4142 0%, #382526 100%) !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* 清除按钮 - 大地棕色边框 */
 #clear-btn {
+    width: 60% !important;
+    margin: 20px auto !important;
     border-radius: 15px !important;
-    border: 2px solid #8d6e63 !important;
-    color: #5d4037 !important;
+    border: 3px solid #8d6e63 !important;
+    color: #7a6058 !important;
     background: transparent !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     transition: all 0.3s ease !important;
 }
 
 #clear-btn:hover {
     background: rgba(141, 110, 99, 0.1) !important;
     border-color: #5d4037 !important;
+    transform: scale(1.03) !important;
 }
 
-/* 消息气泡优化 */
 .message.user {
-    background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%) !important;
+    background: linear-gradient(135deg, #f0e9e9 0%, #e3dada 100%) !important;
     border-radius: 18px 18px 4px 18px !important;
-    border: 1px solid #a5d6a7 !important;
+    border: 3px solid #6b5152 !important;
 }
 
 .message.bot {
-    background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%) !important;
+    background: linear-gradient(135deg, #f1fcd2 0%, #cff5ba 100%) !important;
     border-radius: 18px 18px 18px 4px !important;
-    border: 1px solid #fff59d !important;
+    border: 3px solid #76ad58 !important;
+}
+
+/* Tab (768px - 1024px) */
+@media (max-width: 1024px) {
+    .gradio-container {
+        padding: 60px 20px !important;
+    }
+    
+    #title-text {
+        font-size: 2.2em !important;
+    }
+    
+    #subtitle-text {
+        font-size: 1em !important;
+    }
+}
+
+/* Mobile (375px - 768px) */
+@media (max-width: 768px) {
+    .gradio-container {
+        padding: 20px 8px !important;
+        min-height: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+    
+    #chatbot {
+        border-radius: 12px !important;
+        max-height: 350px !important;
+        width: 100% !important;
+    }
+    
+    #title-text {
+        font-size: 1.8em !important;
+        margin-bottom: 4px !important;
+    }
+    
+    #subtitle-text {
+        font-size: 0.9em !important;
+    }
+    
+    textarea {
+        font-size: 14px !important;
+        padding: 10px !important;
+        border-radius: 10px !important;
+        width: 100% !important;
+    }
+    
+    #send-btn {
+        min-height: 44px !important;
+    }
+    
+    #clear-btn {
+        width: 90% !important;
+    }
+    
+    .gradio-row {
+        gap: 4px !important;
+    }
+}
+
+/* Small size mobile (< 375px)*/
+@media (max-width: 375px) {
+    .gradio-container {
+        padding: 15px 5px !important;
+        width: 100% !important;
+    }
+    
+    #chatbot {
+        border-radius: 10px !important;
+        max-height: 300px !important;
+    }
+    
+    #title-text {
+        font-size: 1.5em !important;
+        margin-bottom: 2px !important;
+    }
+    
+    #subtitle-text {
+        font-size: 0.85em !important;
+        line-height: 1.4 !important;
+    }
+    
+    textarea {
+        font-size: 12px !important;
+        padding: 8px !important;
+    }
+    
+    #send-btn {
+        min-height: 40px !important;
+        font-size: 0.9em !important;
+    }
+    
+    #clear-btn {
+        width: 95% !important;
+        font-size: 0.85em !important;
+    }
 }
 '''
 
-with gr.Blocks(title="Travel Agent", theme=gr.themes.Soft(), css=custom_css) as demo:
-    gr.HTML("<h1 id='title-text'> AI Travel Agent</h1>")
-    gr.HTML("<p id='subtitle-text'> Your dedicated travel assistant for structured, intelligent trip planning. Designing clear, personalized trips just for you.</p>")
+with gr.Blocks(title="Travel Assistant", theme=gr.themes.Soft(), css=custom_css) as demo:
+    gr.HTML("<h1 id='title-text'> AI Travel Assistant</h1>")
+    gr.HTML("<p id='subtitle-text'>Your dedicated travel assistant for structured, intelligent trip planning.<br>Designing clear, personalized trips just for you.</p>")
     
     session_id_state = gr.State(value=lambda: str(uuid.uuid4()))
     
-    chatbot = gr.Chatbot(elem_id="chatbot", height=400)
+    chatbot = gr.Chatbot(elem_id="chatbot", height=400, type='messages')
     
     with gr.Row():
-        msg = gr.Textbox(label="", placeholder=" Where would you like to explore? (e.g., 'Plan a 5-day eco-tour in Kyoto, Japan')", scale=5, show_label=False)
+        msg = gr.Textbox(label="", placeholder=" Where would you like to explore? (e.g., 'Plan a 2-day eco-tour in Kyoto, Japan')", scale=5, show_label=False)
         submit_btn = gr.Button("Send ", elem_id="send-btn", scale=1)
     
     clear_btn = gr.Button(" Clear Chat & New Journey", elem_id="clear-btn")
