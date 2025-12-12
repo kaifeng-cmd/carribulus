@@ -34,11 +34,11 @@ async def chat_function(message, history, session_id):
     yield "", history
 
 custom_css = '''
-/* ════ 桌面端（默认）════ */
+/* Global Base Styles */
 .gradio-container {
     background: linear-gradient(135deg, #f2f9fc 0%, #FEEAC9 50%, #ffd3b6 100%) !important;
     min-height: 100vh !important;
-    padding: 100px !important;
+    padding: 55px !important;
 }
 
 #chatbot {
@@ -54,8 +54,6 @@ custom_css = '''
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-size: 2.8em !important;
-    margin-bottom: 8px !important;
     font-weight: 800 !important;
     letter-spacing: -0.5px !important;
 }
@@ -63,7 +61,6 @@ custom_css = '''
 #subtitle-text {
     text-align: center;
     color: #5d4037 !important;
-    font-size: 1.15em !important;
     font-weight: 500 !important;
     opacity: 0.9;
     margin: 0 !important;
@@ -75,7 +72,6 @@ textarea {
     border-radius: 15px !important;
     border: 2px solid #ffffff !important;
     background: #ffffff !important;
-    font-size: 16px !important;
     padding: 12px !important;
 }
 
@@ -91,7 +87,6 @@ textarea:focus {
     border-radius: 10px !important;
     color: white !important;
     font-weight: 600 !important;
-    min-height: 48px !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
     transition: all 0.3s ease !important;
 }
@@ -103,7 +98,6 @@ textarea:focus {
 }
 
 #clear-btn {
-    width: 60% !important;
     margin: 20px auto !important;
     border-radius: 15px !important;
     border: 3px solid #8d6e63 !important;
@@ -131,51 +125,70 @@ textarea:focus {
     border: 3px solid #76ad58 !important;
 }
 
-/* Tab (768px - 1024px) */
-@media (max-width: 1024px) {
-    .gradio-container {
-        padding: 60px 20px !important;
-    }
+/* Desktop/Tablet (Screen > 768px) */
+@media (min-width: 769px) {
+    /* Using global padding (55px) */
     
     #title-text {
-        font-size: 2.2em !important;
+        font-size: 2.8em !important;
+        margin-bottom: 8px !important;
     }
     
     #subtitle-text {
-        font-size: 1em !important;
+        font-size: 1.15em !important;
+    }
+    
+    textarea {
+        font-size: 16px !important;
+    }
+    
+    #send-btn {
+        min-height: 48px !important;
+    }
+    
+    #clear-btn {
+        width: 60% !important;
     }
 }
 
-/* Mobile (375px - 768px) */
+/* Mobile (Screen <= 768px) */
 @media (max-width: 768px) {
     .gradio-container {
-        padding: 20px 8px !important;
-        min-height: auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow-x: hidden !important;
+    }
+
+    .block-container {
         width: 100% !important;
         max-width: 100% !important;
+        padding: 5px !important;
         margin: 0 !important;
     }
     
     #chatbot {
         border-radius: 12px !important;
-        max-height: 350px !important;
+        height: 65vh !important;
+        max-height: none !important;
         width: 100% !important;
+        margin-bottom: 10px !important;
     }
     
     #title-text {
         font-size: 1.8em !important;
-        margin-bottom: 4px !important;
+        margin-top: 5px !important;
+        margin-bottom: 5px !important;
     }
     
     #subtitle-text {
-        font-size: 0.9em !important;
+        font-size: 0.95em !important;
+        padding: 0 2px !important;
     }
     
     textarea {
-        font-size: 14px !important;
-        padding: 10px !important;
+        font-size: 16px !important;
+        padding: 8px !important;
         border-radius: 10px !important;
-        width: 100% !important;
     }
     
     #send-btn {
@@ -184,48 +197,26 @@ textarea:focus {
     
     #clear-btn {
         width: 90% !important;
+        margin: 10px auto !important;
     }
     
     .gradio-row {
-        gap: 4px !important;
+        gap: 5px !important;
     }
 }
 
-/* Small size mobile (< 375px)*/
+/* Small Screen Mobile (<= 375px) */
 @media (max-width: 375px) {
-    .gradio-container {
-        padding: 15px 5px !important;
-        width: 100% !important;
-    }
-    
-    #chatbot {
-        border-radius: 10px !important;
-        max-height: 300px !important;
-    }
-    
     #title-text {
         font-size: 1.5em !important;
-        margin-bottom: 2px !important;
     }
     
     #subtitle-text {
         font-size: 0.85em !important;
-        line-height: 1.4 !important;
     }
     
-    textarea {
-        font-size: 12px !important;
-        padding: 8px !important;
-    }
-    
-    #send-btn {
-        min-height: 40px !important;
-        font-size: 0.9em !important;
-    }
-    
-    #clear-btn {
-        width: 95% !important;
-        font-size: 0.85em !important;
+    #chatbot {
+        height: 60vh !important;
     }
 }
 '''
